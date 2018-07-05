@@ -3,6 +3,7 @@ import urllib
 from PIL import Image
 import pytesseract
 import time
+from random import randint
 
 def upvote():
     urlIndex = "http://hoidienvannghe.oceanbank.vn/Binhchon.aspx?location=MB"
@@ -27,5 +28,7 @@ def upvote():
 
 if __name__=="__main__":
     while True:
-        time.sleep(40)
+        sleeptime = (randint(30, 60))
+        time.sleep(sleeptime)
+        print "Sleep for: "+str(sleeptime)
         upvote()
