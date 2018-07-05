@@ -28,7 +28,7 @@ def upvote():
 
 if __name__=="__main__":
     while True:
-        sleeptime = (randint(30, 60))
+        sleeptime = (randint(10, 20))
         time.sleep(sleeptime)
         print "Sleep for: "+str(sleeptime)
         upvote()
