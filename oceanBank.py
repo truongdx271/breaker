@@ -55,7 +55,7 @@ if __name__ == "__main__":
     while True:
         try:
             upvote(121)
-            sleeptime = (randint(50, 100))
+            sleeptime = (randint(200, 300))
             time.sleep(sleeptime)
             print "Sleep for: "+str(sleeptime)
         except KeyboardInterrupt:
