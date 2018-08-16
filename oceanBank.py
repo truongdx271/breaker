@@ -1,5 +1,5 @@
 import requests
-import urllib
+import urllib, sys
 from PIL import Image
 import pytesseract
 import time
@@ -29,7 +29,7 @@ def set_header(ip,sessionId):
 def upvote(ms):
     urlIndex = "http://hoidienvannghe.oceanbank.vn/Binhchon.aspx?location=MB"
     # get header -> userid, sessionid
-    r = requests.get(urlIndex)
+    r = requests.get(urlIndex,timeout=5)
     sessionId = r.headers['Set-Cookie'].split(';')[0].split('=')[1]
     userId = r.headers['Set-Cookie'].split(';')[4].split('=')[1]
     # set url to download captcha
@@ -47,14 +47,18 @@ def upvote(ms):
     # submit vote
     urlUpvote = "http://hoidienvannghe.oceanbank.vn/UpdateVote.aspx?user_id=" + \
         userId + "&vp_id="+str(ms)+"&capchar=" + captcha
-    re = requests.get(urlUpvote,headers=set_header(get_random_ip(),sessionId))
+    re = requests.get(urlUpvote,headers=set_header(get_random_ip(),sessionId) )
     print re.status_code
 
 
 if __name__ == "__main__":
-    #while True:
-    #    upvote(121)
-    #    sleeptime = (randint(10, 20))
-    #    time.sleep(sleeptime)
-    #    print "Sleep for: "+str(sleeptime)
-    upvote(121)
+    while True:
+        try:
+            upvote(121)
+            sleeptime = (randint(10, 20))
+            time.sleep(sleeptime)
+            print "Sleep for: "+str(sleeptime)
+        except KeyboardInterrupt:
+            sys.exit(0)
+        except:
+            print("captcha nhu lol")
