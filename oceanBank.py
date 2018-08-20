@@ -5,6 +5,7 @@ import pytesseract
 import time
 from random import randint
 from faker import Factory
+import datetime
 
 fake_generator = Factory.create()
 
@@ -48,6 +49,7 @@ def upvote(ms):
     urlUpvote = "http://hoidienvannghe.oceanbank.vn/UpdateVote.aspx?user_id=" + \
         userId + "&vp_id="+str(ms)+"&capchar=" + captcha
     re = requests.get(urlUpvote,headers=set_header(get_random_ip(),sessionId) )
+    print(datetime.datetime.now())
     print re.status_code
 
 
@@ -55,7 +57,7 @@ if __name__ == "__main__":
     while True:
         try:
             upvote(121)
-            sleeptime = (randint(200, 300))
+            sleeptime = (randint(60, 100))
             time.sleep(sleeptime)
             print "Sleep for: "+str(sleeptime)
         except KeyboardInterrupt:
